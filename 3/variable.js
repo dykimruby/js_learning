@@ -70,4 +70,41 @@ const test = 3 < 1; //false
 console.log('value: ${canRead}, type: ${typeof canRead}');
 console.log('value: ${test}, type: ${typeof test}');
 
-//3강 19:20부터 들으시오
+// null (아무것도 아닌 텅텅비어있는 값)
+let nothing = null;
+console.log('value: ${nothing}, type: ${typeof nothing}');
+
+// undefined (선언되어있지만 값이 정해져있지 않은 것)
+let x;
+console.log('value: ${x}, type: ${typeof x}');
+
+// symbol, create unique indentifiers for objects (고유한 식별자가 필요하거나 동시다발적으로 일어나는 코드에서 우선순위를 주고 싶을 때 고유한 식별자로 간주할 수 있게 하는 것 동일한 id로 해도 다른 심볼로 인식. string은 불가 => 즉, string에 상관없이 고유한 식별자를 줄 때 사용. )
+const symbol1 = Symbol('id');
+const symbol2 = Symbol('id');
+console.log(symbol1 === symbol2);
+const gSymbol1 = Symbol.for('id'); // Symbol.for 동일한 심볼을 만들고 싶을 때
+const gSymbol2 = Symbol.for('id');
+console.log(symbol1 === symbol2); // true 
+// console.log('value: ${symbol1}, type: ${type symbol1}');
+//=>심볼은 이렇게 바로 출력하게 되면 오류가 발생함. 항상 .description으로 string으로 변환해서 출력해야 한다.
+console.log('value: ${symbol1.description}, type: ${type symbol1}');
+
+// objet, real-life object, data structure
+const ellie = { name: 'ellie', age: 20 }; //오브젝트는 우리가 일상생활에서 보는 물건과 물체를 대표할 수 있는 박스형태
+// 그냥 변수 age는 아무것도 설명x지만 이렇게 ellie라는 변수를 만들어서 ellie의 이름은 ellie이고, 나이는 20이다
+//지금 ellie는 const로 지정되어 있어서 한번 할당된 오브젝트는 다시는 다른 오브젝트로 변경x
+// ellie라는 오브젝트는 const키워드로 정의가 되어 있기 때문에, ellie가 가리키고 있는 메모리 포인터는 잠겨 있어서, 다른 오브젝트로 할당이 불가능하지만, ellie오브젝트 안에서는 이렇게 name과 age라는 변수들이 존재. ==> 그래서 ellie.name, ellie.age 이런식으로 하면, 각각 포인터가 가리키고 있는 메모리의 다른 값으로 할당 가능!
+ellie.age = 21;
+
+// 5. Dynamic typing: dynamically typed language
+// C, 자바: 타입을 같이 선언 <-> 자바스크립트:선언할 때 어떤 타입인지 선언하지 않고, 런타임 프로그램이 동작할 때 할당된 값에 따라서 타입이 변경될 수가 있는 것을 이야기함. 
+let text = 'hello';
+console.log(text.charAt(0)); // h 배열 항상 인덱싱 0부터 시작함.
+console.log('value: ${text}, type: ${typeof text}');
+text = 1;
+console.log('value: ${text}, type: ${typeof text}');
+text = '7' + 5;
+console.log('value: ${text}, type: ${typeof text}'); //string+string
+text = '8' / '2'
+console.log('value: ${text}, type: ${typeof text}'); //바로 number로 타입 변환이 되면서 연산이 된 것을 
+//console.log(text.charAt(0)); =>배열x 숫자number타입
