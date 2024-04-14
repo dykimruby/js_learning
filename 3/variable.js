@@ -1,6 +1,6 @@
 'use strict'; //꼭 선언해주기
 
-//2. Variable
+//2. Variable, rw(read/write)=>메모리를 읽고 쓰는 것이 가능
 // let (added in ES6) 변수를 만드는 키워드
 let globalName = 'global name';
 {
@@ -22,17 +22,27 @@ console.log(globalName);
 }
 console.log(age);
 
-// 3. Contants (한번 값을 할당하면 값이 절대 바뀌지 않는 아이)
+// 3. Constant (한번 값을 할당하면 값이 절대 바뀌지 않는 아이), r(read only)=>읽기만 가능
 // 가리키고 있는 포인터가 잠겨있음. 다시는 값을 변경할 수 없음
 // immutable 데이터 타입(바뀌지 않는 데이터 타입)
 // security, thread safety, reduce human mistakes
+//>> 앞으로 변수의 값이 바뀌어야하는 좋은 이유가 없다면 웬만해서는 Constant 사용
 const daysInWeek = 7;
 const maxNumber = 5;
+
+//Note!
+// Immutable data types: primitive type, frozen objects (i. e. object.freeze())
+// Mutable data types: all objects by default are mutable in JS (변경이 가능)
+// favor immutable data type always for a few reasons:
+// - security
+// - thread safety 
+//- reduce human mistakes
+
 
 //4. Variable types
 // primitive, single(더이상 작은 단위로 나뉘어질 수 없는 데이터 타입) : number, string, boolean, null, undefied, symbol
 // object, box container(싱글타입들을 한 오브젝트로 묶어서 한 단위로 한 박스로 관리할 수 있게 해주는 것)
-//보통 위 두 타입으로 나뉘어져 있음.
+//보통 위 두 타입으로 나뉘어져 있음.(메모리 저장방식)
 // function, first-class function (이 프로그래밍 언어에서는 function도 다른 데이터 타입처럼 변수에 할당이 가능하고, 함수의 parameter인자로도 전달, 함수에서도 리턴타입으로 펑션을 리턴 가능함.)
 
 //js는 상관없이 타입은 number로 나옴.
