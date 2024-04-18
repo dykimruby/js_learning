@@ -24,37 +24,44 @@ console.log(age);
 
 // 3. Constant (한번 값을 할당하면 값이 절대 바뀌지 않는 아이), r(read only)=>읽기만 가능
 // 가리키고 있는 포인터가 잠겨있음. 다시는 값을 변경할 수 없음
-// immutable 데이터 타입(바뀌지 않는 데이터 타입)
+// immutable 데이터 타입(바뀌지 않는 데이터 타입) 이다. <-> mutable 데이터타입(ex. let)
 // security, thread safety, reduce human mistakes
 //>> 앞으로 변수의 값이 바뀌어야하는 좋은 이유가 없다면 웬만해서는 Constant 사용
 const daysInWeek = 7;
 const maxNumber = 5;
 
-//Note!
+//Note! 
+//(데이터에는 Immutable타입[데이터 자체를 절대 변경하지 못함]과 Mutable타입[계속 스스로 변경이 가능함] 2가지가 있음.)
 // Immutable data types: primitive type, frozen objects (i. e. object.freeze())
 // Mutable data types: all objects by default are mutable in JS (변경이 가능)
-// favor immutable data type always for a few reasons:
+// favor immutable data type always for a few reasons: (웬만하면 값을 할당한 다음에 다시는 변경되지 않는 데이터타입을 사용해라.)
 // - security
 // - thread safety 
 //- reduce human mistakes
 
-
 //4. Variable types
-// primitive, single(더이상 작은 단위로 나뉘어질 수 없는 데이터 타입) : number, string, boolean, null, undefied, symbol
-// object, box container(싱글타입들을 한 오브젝트로 묶어서 한 단위로 한 박스로 관리할 수 있게 해주는 것)
+// primitive, single(더이상 작은 단위로 나뉘어질 수 없는 데이터 타입) : number, string, boolean, null, undefied, symbol ++추가설명 : 값자체가 메모리에 저장이 된다.
+// object, box container(싱글타입들을 한 오브젝트로 묶어서 한 단위로 한 박스로 관리할 수 있게 해주는 것) 
+// 오브젝트 ++추가설명 : 메모리가 너무커서 한번에 다 올릴 수 없음. const ellie하고 오브젝트를 할당하고 나면, ellie가 가리키고 있는 곳에는 '레퍼런스'가 있음. ** 레퍼런스는 실제 오브젝트를 가리키고 있는 곳임. (ref 오브젝트가 담겨있는 메모리를 가리키게 됨) 
+//<정리1> const ellie라고 선언하게 되면, 이 엘리가 가리키고 있는 포인터만 잠겨서 이 엘리가 다른 오브젝트로 변경이 불가능하지만, 엘리의 이름과 나이는 계속 변경이 가능하다!!
+// object
+// ellie -(잠김)-> ref -> name -> ellie
+//                     -> age -> 20
 //보통 위 두 타입으로 나뉘어져 있음.(메모리 저장방식)
+//<정리2> primitive타입은 value로 값이 저장되고, object타입은 오브젝트를 가리키는 레퍼런스가 메모리에 저장된다.
+
 // function, first-class function (이 프로그래밍 언어에서는 function도 다른 데이터 타입처럼 변수에 할당이 가능하고, 함수의 parameter인자로도 전달, 함수에서도 리턴타입으로 펑션을 리턴 가능함.)
 
 //js는 상관없이 타입은 number로 나옴.
-const count = 17; //integer
+const count = 17; // integer
 const size = 17.1; // decimal number(소수점)
-console.log('value: ${count}, type: ${typeof count}')
-console.log('value: ${size}, type: ${typeof size}')
+console.log(`value: ${count}, type: ${typeof count}`)
+console.log(`value: ${size}, type: ${typeof size}`)
 
 // number - speical numeric values: infinity, -infinity, Nagativeinfinity;
-const infinity = 1 / 0;
-const Nagativeinfinity = -1 / 0;
-const nAn = 'not a number' / 2;
+const infinity = 1 / 0; // Infinity
+const Nagativeinfinity = -1 / 0; // -Infinity
+const nAn = 'not a number' / 2; // NaN
 console.log(infinity);
 console.log(Nagativeinfinity);
 console.log(nAn);
@@ -63,13 +70,13 @@ console.log(nAn);
 const bigInt = 1234567890123456789012345678901234567890n; // over (-2**53) ~ 2*53)
 console.log('value: ${bigInt}, type: ${typeof bigInt}');
 
-//string
+//string (js에서는 한글자, 여러글자 다 string타입으로 할당.)
 const char = 'c';
 const brendan = 'brendan';
 const greeting = 'hello' + brendan;
 console.log('value: ${greeting}, type: ${typeof greeting}');
-const helloBob = 'hi ${brenan}!'; // template literals (string) 저렇게 쓰면 {}안 변수의 값 붙여서 출력된다.
-console.log('value: ${helloBob}, type: ${typeof helloBob}');
+const helloBob = `hi ${brenan}!`; // template literals (string) 저렇게 쓰면 {}안 변수의 값 붙여서 출력된다.
+console.log(`value: ${helloBob}, type: ${typeof helloBob}`);
 console.log('value: ' + helloBob + ' type: ' + typeof helloBob);
 
 // boolean
@@ -77,8 +84,8 @@ console.log('value: ' + helloBob + ' type: ' + typeof helloBob);
 // true: any other value
 const canRead = true;
 const test = 3 < 1; //false
-console.log('value: ${canRead}, type: ${typeof canRead}');
-console.log('value: ${test}, type: ${typeof test}');
+console.log(`value: ${canRead}, type: ${typeof canRead}`);
+console.log(`value: ${test}, type: ${typeof test}`);
 
 // null (아무것도 아닌 텅텅비어있는 값)
 let nothing = null;
@@ -88,20 +95,20 @@ console.log('value: ${nothing}, type: ${typeof nothing}');
 let x;
 console.log('value: ${x}, type: ${typeof x}');
 
-// symbol, create unique indentifiers for objects (고유한 식별자가 필요하거나 동시다발적으로 일어나는 코드에서 우선순위를 주고 싶을 때 고유한 식별자로 간주할 수 있게 하는 것 동일한 id로 해도 다른 심볼로 인식. string은 불가 => 즉, string에 상관없이 고유한 식별자를 줄 때 사용. )
+// symbol, create unique indentifiers for objects (고유한 식별자가 필요하거나 동시다발적으로 일어나는 코드에서 우선순위를 주고 싶을 때 고유한 식별자로 간주할 수 있게 하는 것 동일한 string으로 작성해도 다른 심볼로 인식. string은 불가 => 즉, string에 상관없이 고유한 식별자를 줄 때 사용. )
 const symbol1 = Symbol('id');
 const symbol2 = Symbol('id');
 console.log(symbol1 === symbol2);
 const gSymbol1 = Symbol.for('id'); // Symbol.for 동일한 심볼을 만들고 싶을 때
 const gSymbol2 = Symbol.for('id');
-console.log(symbol1 === symbol2); // true 
-// console.log('value: ${symbol1}, type: ${type symbol1}');
+console.log(gSymbol1 === gSymbol2); // true 
+// console.log(`value: ${symbol1}, type: ${typeof symbol1}`);
 //=>심볼은 이렇게 바로 출력하게 되면 오류가 발생함. 항상 .description으로 string으로 변환해서 출력해야 한다.
-console.log('value: ${symbol1.description}, type: ${type symbol1}');
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
 
 // objet, real-life object, data structure
 const ellie = { name: 'ellie', age: 20 }; //오브젝트는 우리가 일상생활에서 보는 물건과 물체를 대표할 수 있는 박스형태
-// 그냥 변수 age는 아무것도 설명x지만 이렇게 ellie라는 변수를 만들어서 ellie의 이름은 ellie이고, 나이는 20이다
+// 그냥 변수 age는 아무것도 설명x지만 이렇게 ellie라는 오브젝트를 만들어서 ellie의 이름은 ellie이고, 나이는 20이다
 //지금 ellie는 const로 지정되어 있어서 한번 할당된 오브젝트는 다시는 다른 오브젝트로 변경x
 // ellie라는 오브젝트는 const키워드로 정의가 되어 있기 때문에, ellie가 가리키고 있는 메모리 포인터는 잠겨 있어서, 다른 오브젝트로 할당이 불가능하지만, ellie오브젝트 안에서는 이렇게 name과 age라는 변수들이 존재. ==> 그래서 ellie.name, ellie.age 이런식으로 하면, 각각 포인터가 가리키고 있는 메모리의 다른 값으로 할당 가능!
 ellie.age = 21;
@@ -110,11 +117,11 @@ ellie.age = 21;
 // C, 자바: 타입을 같이 선언 <-> 자바스크립트:선언할 때 어떤 타입인지 선언하지 않고, 런타임 프로그램이 동작할 때 할당된 값에 따라서 타입이 변경될 수가 있는 것을 이야기함. 
 let text = 'hello';
 console.log(text.charAt(0)); // h 배열 항상 인덱싱 0부터 시작함.
-console.log('value: ${text}, type: ${typeof text}');
+console.log(`value: ${text}, type: ${typeof text}`);
 text = 1;
-console.log('value: ${text}, type: ${typeof text}');
-text = '7' + 5;
-console.log('value: ${text}, type: ${typeof text}'); //string+string
+console.log(`value: ${text}, type: ${typeof text}`);
+text = '7' + 5; //75 string
+console.log(`value: ${text}, type: ${typeof text}`); // '/연산자' -> 4
 text = '8' / '2'
-console.log('value: ${text}, type: ${typeof text}'); //바로 number로 타입 변환이 되면서 연산이 된 것을 
+console.log(`value: ${text}, type: ${typeof text}`); //바로 number로 타입 변환이 되면서 연산이 된 것을 
 //console.log(text.charAt(0)); =>배열x 숫자number타입
