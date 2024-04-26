@@ -26,7 +26,7 @@ log(1234);
 
 // 2. Parameters
 
-// primitive parameters: passed by value (메모리에 value가 그대로 저장되어 있기 때문에,  value가 저장이 된다.)
+// primitive parameters: passed by value (메모리에 value가 그대로 저장되어 있기 때문에,  value가 전달이 된다.)
 // object parameters: passed by reference (메모리에 reference가 저장됨.)
 function changeName(obj) {
     obj.name = 'coder'; //전달된 obj의 name을 무조건 coder로 변경하는 함수
@@ -53,11 +53,11 @@ function printAll(...args) { //배열의 형태로 전달 , args 3개의 값이 
         console.log(args[i]);
     }
 
-    for (const arg of args) {
+    for (const arg of args) { //arg에 있는 값이 차례차례 하나씩 지정이 되면서 실행
         console.log(arg);
     }
 
-    args.forEach((arg) => console.log(arg));
+    args.forEach((arg) => console.log(arg)); //배열에서 forEach함수 이용
 }
 printAll('dream', 'coding', 'ellie');
 
@@ -109,17 +109,20 @@ function upgradeUser(user) {
 
 
 // 8. Function expression
-const print = function () { 
-  // anonymous function
+// 함수 선언과 함수 표현의 큰 차이점
+// expression은 이렇게 할당된 다음부터, 호출이 가능한 반면에, 즉 print를 선언하기 전에 호출을 하면, 에러가 나지만 
+// declaration은 호이스팅이 된다. 함수가 선언되기 이전에 호출해도 된다. js엔진이 선언을 제일 위로 올려줌. ex) sum
+const print = function () { //함수를 선언함과 동시에 바로 변수에 할당할 수 있음.
+  // anonymous function: function() 함수에 이름이 없이 필요한 것만 작성해서 변수에 할당한 것, 아니면 named function: fuction print() 이렇게 함수 이름을 줄 수 있음.
     console.log('print');
 };
-print();
+print(); //print라는 변수에 함수를 호출하듯이 하면, print가 출력이 됨.
 
-const printAgain = print;
-printAgain();
+const printAgain = print; // 또 다른 변수에 할당하게 되면, printAgain은 function()함수를 가리키고 있기 때문에, 
+printAgain(); // 다시 함수를 호출하는 것처럼 부르면, ,print가 출력되는 것을 볼 수 있다.
 
-const sumAgain = sum;
-console.log(sumAgain(1, 3));
+const sumAgain = sum; //sum이라는 function을 위에서 만들었었는데, 다시 sumAgain라는 변수에 할당하게 되면
+console.log(sumAgain(1, 3)); // 4 동일하게 호출할 수가 있음.
 
 
 
@@ -146,13 +149,19 @@ randomQuiz('love you', printYes, printNo);
 
 
 // Arrow function
-const simplePrint = () => console.log('simplePrint!');
-const add = (a, b) => a + b;
+// 함수를 간결하게 해준다.
+// 얘는 항상 이름이 없는 always anonymous fucntion이다.
+const simplePrint = () => console.log('simplePrint!'); //fucntion이라는 키워드, 블록 필요x
+const add = (a, b) => a + b; //return 값은 a + b
+// const add = function (a, b) { 이렇게 표현한 것과 위처럼 표현한 것은 같다.
+//   return a + b; 
+//};
 const simpleMultiply = (a, b) => {
-    return a * b;
+    return a * b; // 함수 안에서 다양한 일을 해야돼서 블록이 필요하다면, return 값이 필요!
 };
 
 // IIFE: Immediately Invoked Function Expression
+// 선언함과 동시에 함수 호출하기
 (function hello() {
     console.log('IIFE');
 })();

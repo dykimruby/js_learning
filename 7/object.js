@@ -4,34 +4,49 @@
 // a collection of related data and/or functionality.
 // Nearly all objects in JavaScript are instances of Object
 
-// 1. object = { key : value };
+//const name = 'ellie'; //primitive 타입=> 변수하나당 값 하나만
+//const age = 4;
+//print(name, age); //출력하고 싶으면 이름과 나이를 각각 써줘야한다.
+//function print(name, age){//함수를 정의할 때에도 두가지의 파라미터를 받아오도록 써줘야함.
+//  consle.log(name);
+//  consle.log(age);
+//}; 
 
-const obj1 = {}; // 'object literal' syntax
-const obj2 = new Object(); // 'object constructor' syntax
+//=> 이렇게 해주면 문제가 조금 더 인자가 많아지게 되면 추가해줘야하는 게 많고 관리 어려움. 이것을 개선하고자 오브젝트를 쓴다!!
 
-function print(person) {
+
+
+// 1. Literals and properties
+// object = { key : value };
+// 오브젝트는 우리가 접근할 수 있는 key 변수 property와 그 property가 가지고 있는 값 value
+
+const obj1 = {}; // 'object literal' syntax: 클래스없이 {}를 이용해서 할 수도 있고
+const obj2 = new Object(); // 'object constructor' syntax: new키워드와 클래스를 이용해서 
+
+function print(person) { // person이라는 데이터를 받아서
   console.log(person.name);
   console.log(person.age);
 }
 
-const ellie = { name: 'ellie', age: 4 };
+const ellie = { name: 'ellie', age: 4 }; //ellie 오브젝트로 관리 이름과 나이
+// 2가지의 key와 거기에 상응하는 값2개
 print(ellie);
 
 // can add properties later
-ellie.hasJob = true;
+ellie.hasJob = true; // 뒤늦게 정보 추가도 가능. (자바스크립트의 동적으로 타입이 런타입때 결정되므로)
 console.log(ellie.hasJob);
 
 // can delete properties later
-delete ellie.hasJob;
-console.log(ellie.hasJob);
+delete ellie.hasJob; // 삭제도 가능
+console.log(ellie.hasJob); // undefined
 
 
 
 // 2. Computed properties
 // key는 항상 String
-console.log(ellie.name);
-console.log(ellie['name']);
-ellie['hasJob'] = true;
+console.log(ellie.name); //오브젝트 안에 있는 데이터 접근하는 법1 : .
+console.log(ellie['name']); // 다른 방법2 : []를 이용해서 오브젝트 안에 있는 변수의 이름을 스트링 형태로 접근 가능!! **주의 key는 항상 'string타입'으로 받아오기 name(x) 'name'(o)
+ellie['hasJob'] = true; //다시 할당가능
 console.log(ellie.hasJob);
 
 function printValue(obj, key) {
